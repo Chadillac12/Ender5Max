@@ -1,43 +1,43 @@
-Прошивка картографера для Windows (на данный момент работоспособность не доказана. через линукс по факту проще)
+Flashing the Cartographer on Windows (currently unverified — in practice, Linux is simpler)
 
-## Вход в режим DFU
+## Entering DFU Mode
 
-Вход в режим DFU может быть немного затруднительным, но как только вы освоитесь, все станет довольно просто.
+Entering DFU mode can be a bit tricky, but once you get the hang of it, it becomes fairly simple.
 
-Подключите USB-кабель к ПК с ОС Windows, с которого вы будете производить прошивку, и к датчику Cartographer. 
+Connect the USB cable to the Windows PC you will be flashing from, and to the Cartographer sensor.
 
-Используя пинцет из железа или аналогичный инструмент, соедините контакты 1 (boot0), как только на них будет достигнут прочный контакт, коснитесь контакта 2 (сброс) другим инструментом из железа.
+Using metal tweezers or a similar metal tool, short the contacts at pin 1 (boot0). Once a solid contact is made, touch pin 2 (reset) with another metal tool.
 
 ![](/images/image_plate_dfu.png)
 
 
-Если вы все сделали правильно, ваше устройство должно перейти в режим DFU.
+If you did everything correctly, your device should enter DFU mode.
 
-Windows — выполните следующие действия.
+On Windows — follow these steps:
 
-Меню «Пуск»
+Start Menu
 
-Найдите и откройте «Диспетчер устройств».
+Find and open Device Manager.
 
-Прокрутите вниз до раздела Устройства универсальной последовательной шины.
+Scroll down to Universal Serial Bus devices.
 
-Вы должны увидеть STM32 BOOTLOADER как опцию.
+You should see STM32 BOOTLOADER as an option.
 
 ![](/images/image_win_dfu.png)
 
 
-## Прошивка через STM32CubeProgrammer Windows 
+## Flashing via STM32CubeProgrammer on Windows 
 
-скачать программу можно с [официального сайта](https://www.st.com/en/development-tools/stm32cubeprog.html) но исключительно через VPN и регистрацию. Или можно по ссылке с телеграмм группы [пользователей Ender 5 max](https://t.me/Ender_5_Max_Ru/5283)
+The program can be downloaded from the [official website](https://www.st.com/en/development-tools/stm32cubeprog.html) but only via VPN and with registration. Alternatively, use the link from the Telegram group of [Ender 5 Max users](https://t.me/Ender_5_Max_Ru/5283).
 
-Откройте приложение и СПРАВА выберите следующие параметры и нажмите Подключиться .
+Open the application, select the following options on the RIGHT side, and click Connect.
 
 ![](/images/image_stm32_dfu.png)
 
-Для прошивки Cartographer вам нужно установить адрес `0x08002000` Это обеспечивает смещение в 8 КБ для прошивки. Прошивка загрузчика Katapult может быть прошита по умолчанию `0x08000000`.
+To flash the Cartographer, you need to set the address `0x08002000`. This provides an 8 KB offset for the firmware. The Katapult bootloader firmware can be flashed at the default address `0x08000000`.
 
 ![](/images/stm32_dfu_util.png)
 
-На каждой прошивке нажмите "Download", начиная с Katapult, затем Cartographer. Теперь нажмите Disconnect в ВЕРХНЕМ ПРАВОМ углу.
+For each firmware file, click "Download" — starting with Katapult, then Cartographer. Then click Disconnect in the UPPER RIGHT corner.
 
-Если мигает СИНИЙ светодиод, значит, вы не полностью обновили прошивку и вам следует начать заново. Если вы сейчас выключите и включите питание зонда или просто нажмете на контакты RESET (2), как было сделано ранее, ваш зонд должен отреагировать, если под него поместить что-то твердое металлическое.
+If the BLUE LED is blinking, you have not completed the firmware update and should start over. If you power cycle the probe or simply touch the RESET contacts (2) as before, the probe should respond when something hard and metallic is placed beneath it.

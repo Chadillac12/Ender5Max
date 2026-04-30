@@ -1,44 +1,44 @@
-Первые впечатления от принтера.
+First impressions of the printer.
 
-1. Коробка огромная и тяжелая. 31 кг. Надежно, мощно. сильно. понравилось.
+1. The box is huge and heavy — 31 kg. Sturdy, powerful, impressive. Liked it.
 
-2. Сборка достаточно легкая. посмотрел [видео](https://youtu.be/VDOPQRVCY3I?si=ck5SxVFJXiyOnVK2) также в комплекте инструкция по сборке. все болтики в отдельных пакетиках, подписаны. удобно.
+2. Assembly is fairly easy. Watched a [video](https://youtu.be/VDOPQRVCY3I?si=ck5SxVFJXiyOnVK2) and also used the included assembly guide. All bolts are in separate labeled bags. Very convenient.
 
-3. Первое включение долгое. пока тест пройдет, по сравнению с к серией стол поднимается и опускается медленно, но это не страшно. 
+3. The first boot takes a while — while the test runs, the bed moves up and down more slowly compared to the K series, but that's not a big deal.
 
-4. размеры указанные на сайте пугают но на самом деле размеры самого металлического кубика 608х608х625 остальное это выступающие части типа экрана спереди датчика филамента и держалки пластика справа и сверху держатель кабелей идущих к голове.
+4. The dimensions listed on the website look daunting, but the actual metal cube measures 608×608×625 mm; the rest is protrusions such as the front screen, filament sensor, filament holder on the right, and the cable carrier above going to the print head.
 
-карта стола в стоке при нагреве до 45 градусов выглядит так:
+The stock bed mesh at 45°C looks like this:
 
 ![](/images/map1.jpg) 
 
-Однако первый слой почти не подкачал и выглядит очень прилично а уж для стола 400на400 так вообще прекрасно:
+However, the first layer hardly disappointed and looks very decent — especially impressive for a 400×400 mm bed:
 
 ![](/images/first_layer.jpg)
 
 ![](/images/first_layer2.jpg)
 
 
-3 График потребления электроэнергии для стола в 45 градусов и хотенда 220 вполне себе на уровне.
+3 The power consumption graph for the bed at 45°C and hotend at 220°C is quite reasonable.
 
 ![](/images/watt.jpg)
 
- Не забываем о том, что грелка стола тут 1000 ватт и хотенд выглядит тоже весьма впечатляюще. 
+ Keep in mind that the bed heater here is 1000 W, and the hotend also looks quite impressive.
  
  
 ![](/images/hotend.jpg)
  
 
-сопло тут свое, специфическое. похоже на мк8 но с более длинным носиком.
+The nozzle here is proprietary and specific — similar to MK8 but with a longer tip.
 
 
- Хотенд при тестах спокойно выдавал 30 мм кубических. на 35 возникали небольшие дефекты но кратковременно можно разгонять и до него. 
+ The hotend during tests easily pushed 30 mm³/s. At 35 minor defects appeared, but brief bursts up to that level are possible.
 
  ![](/images/flowtest.jpg)
 
 
 
-4 немного фото как выглядит меню. Сразу напишу - на данный момент доступа root нет.(уже есть) 
+4 A few photos of what the menu looks like. Right off the bat — at this point there was no root access. (root access now available)
 
 ![](/images/menu1.jpg)
 
@@ -54,28 +54,28 @@
 
 ![](/images/menu7.jpg)
 
-Почти ничего нового для пользователей креалити, доступ к облачным сервисам как всегда работает из коробки.
+Nothing new for Creality users — cloud service access works out of the box as usual.
 
-Из  опыта, продавливание нового филамента лучше повторять раза три, изза того что объем хотенда стал значительно больше, цвет может долго перемешиваться с предыдущим. 
+From experience, purging new filament is best repeated two or three times because the hotend volume is significantly larger now, and the color may take a while to mix out from the previous one.
 
-Хорошим подспорьем будет [Камера Creality Nebula](https://aliexpress.ru/item/1005006159528565.html) насколько хорошо будет отрабатывать ИИ еще неизвестно но и без этого штука полезная  для контроля за печатью.
+The [Creality Nebula Camera](https://aliexpress.ru/item/1005006159528565.html) would be a great addition — how well the AI will perform is yet to be seen, but even without AI it's a useful tool for monitoring prints.
 
-## update. 
+## Update. 
 
-После получения root отвечая на вопрос насколько "ужасно" печатает принтер в стоке. 
+After obtaining root access, in response to the question of how "terrible" the printer prints stock:
 
-1. креалити как всегда пытаются загнать под ковер конкретные значения искривления  стола, когда печатаем много мелких деталек это не страшно но если начнем печатать большую деталь которая будет сопрягаться с другой большой деталью это может вылиться в очень большую проблему.
-2. отсутствие исключения моделей представляет проблему уже при печати много мелких моделей.
-3. тензы стола работают не то чтобы идеально, мне повезло и у меня с первого дня обрабатывался стол вполне неплохо(по сравнению с к1) однако если сравнивать с нептуном 4 макс(на секундочку в 2 раза дешевле) то там первый слой мне понравился больше.  не забываем о том что инструментов для правки стола нам креалити не предоставила.
-4.  `variable_autotune_shapers: ei` уж сколько раз твердили миру...  принудительное ограничение выбора шейперов никак не улучшает качество печати а скорее вредит.
-5. Нет стартового и конечного кода, нет KAMP. 
+1. Creality, as always, tries to sweep the actual bed warp values under the rug. When printing many small parts it's not a big deal, but if you start printing a large part that needs to mate with another large part, this can become a very serious problem.
+2. The lack of object exclusion becomes a problem when printing many small models.
+3. The bed strain gauges don't work perfectly. I got lucky and my bed was leveled reasonably well from day one (compared to the K1), but comparing it to the Neptune 4 Max (which costs half the price) the first layer there impressed me more. Keep in mind that Creality did not provide us with any tools to correct the bed.
+4.  `variable_autotune_shapers: ei` — as has been said time and again... Forcing a limited choice of shapers does not improve print quality; it actually makes things worse.
+5. No start and end g-code, no KAMP.
 
-6. По отзывам пользователей одна из самых больших проблем стоковой прошивки это ошибка которая при паузе на слое при вовращении делает ошибку высоты возвращения.  
+6. According to user reports, one of the biggest issues with the stock firmware is an error that causes incorrect return height when resuming from a pause at a layer.
 
-на данный момент одна из самых допиленных версий прошивок это от pelkorp с его [**SimpleAF**](https://pellcorp.github.io/creality-wiki/).
+At the moment, one of the most refined firmware versions is by pellcorp with his [**SimpleAF**](https://pellcorp.github.io/creality-wiki/).
 
-[**Установка на русском прошивки SimpleAF**](/mans/simpleaf.md)  К ее недостаткам можно отнести только что поставить можно !!!только на картографер и бекон. связано это с тем что не смогли с новым клиппером плату головы а точнее акселерометр. так как в картографере и беконе внутри плат есть акселерометры свои, вышли из положения таким образом.  Вполне возможно что через некоторое время ситуация измениться.  
+[**Installing SimpleAF firmware (in English)**](/mans/simpleaf.md) — its only downside is that it can be installed **only** with Cartographer or Beacon probes. This is because the updated Klipper could not communicate with the toolhead board's accelerometer. Since Cartographer and Beacon have their own built-in accelerometers, this workaround was used. It is quite possible that the situation will change in time.
 
-я также перепиливаю прошивку и добавляю возможности к стоковой конфигурации. так как круг пользователей пока небольшой комьюнити не такое активное как хотелось бы.
+I am also modifying the firmware and adding capabilities to the stock configuration. Since the user base is still small, the community is not as active as one would like.
 
 

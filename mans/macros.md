@@ -1,76 +1,76 @@
-<h3 align="right"><a href="https://www.tinkoff.ru/rm/yakovleva.irina203/51ZSr71845" target="_blank">ваше "спасибо" автору</a></h3>
-<h3 align="right"><a href="https://t.me/tombraider2006" target="_blank">телеграм канал автора</a></h3>
-<h5 align="right">поставьте "звездочку" проекту. так другим пользователям легче его найти.</h5>
+<h3 align="right"><a href="https://www.tinkoff.ru/rm/yakovleva.irina203/51ZSr71845" target="_blank">your "thank you" to the author</a></h3>
+<h3 align="right"><a href="https://t.me/tombraider2006" target="_blank">author's Telegram channel</a></h3>
+<h5 align="right">give the project a "star" so other users can find it more easily.</h5>
 
 
-## cписок полезных макросов с пояснениями
+## List of Useful Macros with Explanations
 
-После установки хелпер скрипта открывая вашу панель вы можете увидеть огромную "простыню" с всевозможными макросами. В основном они системные и не предполагают никакого взаимодействия с вами. Они от системы для системы и про систему. Чтобы не путаться и не захламлять интерфейс можно провести несколько простых операций:
+After installing the helper script and opening your web panel, you may see a huge "wall" of all kinds of macros. Most of them are system macros and are not intended for direct interaction — they are from the system, for the system, and about the system. To avoid confusion and clutter in the interface, you can perform a few simple operations:
 
-1 - открываем настройки
+1 — open settings
 
-2 - нажимаем макросы
+2 — click Macros
 
-3 - добавить категорию
+3 — add a category
 
-4 - вписываем название категории (у меня это "тесты")
+4 — enter the category name (mine is "tests")
 
-5 - жмем сохранить
+5 — click Save
 
 ![](/images/macros1.png)
 
-Теперь переходим в раздел "вне категории" и по следующему списку выбираем макрос и нажимаем на него и выбираем ему нашу свежесозданную категорию
+Now go to the "Uncategorized" section and, following the list below, select each macro, click on it, and assign it to the category you just created:
 
 ![](/images/maros2.jpg)
 
 
-`BELTS_SHAPER_CALIBRATION` делает тест резонансов и создает график натяжения ремней
+`BELTS_SHAPER_CALIBRATION` — runs a resonance test and generates a belt tension graph.
 
-`EXCITATE_AXIS_AT_FREQ` макрос тестирования на определенной частоте резонансов для выявления дефектов сборки
+`EXCITATE_AXIS_AT_FREQ` — a resonance testing macro at a specific frequency to detect assembly defects.
 
 ![](/images/macros3.jpg)
 
-На картинке выше мы видим значения по умолчанию. на частоте 25 герц в течении 10 секунд трясем осью икс.  для проведения теста мы ставим 3-5 секунд и перебором частот 25, 27, 30.. и т.д. находим частоту на которой вибрации максимальны. Далее ставим время теста 30-40 секунд и пальпируя корпус находим узел который  вызывает резонанс.  Внешним осмотром выявляем проблему(выкрутился болтик, отклеилась панель, недотянут винт и прочее)  
+In the image above, we can see the default values — shaking the X axis at 25 Hz for 10 seconds. For the test, set 3–5 seconds and sweep through frequencies 25, 27, 30, etc. to find the frequency of maximum vibration. Then set the test duration to 30–40 seconds and feel around the frame to locate the resonating component. A visual inspection will reveal the problem (a loose bolt, a detached panel, an under-tightened screw, etc.).
 
-`INPUT_SHAPER_CALIBRATION` делает тест резонансов и записывает результат в `printer.cfg`
+`INPUT_SHAPER_CALIBRATION` — runs a resonance test and writes the result to `printer.cfg`.
 
-В стоковой прошивке выбор шейперов ограничен `ei` что далеко не оптимально. Helper script решает эту проблему, поэтому после установки скрипта необходимо использовать этот  макрос для установки правильных шейперов.
+In the stock firmware, shaper selection is limited to `ei`, which is far from optimal. Helper Script resolves this issue, so after installing the script, use this macro to set the correct shapers.
 
-`TEST_RESONANCES_GRAPHS` делает тест резонансов и записывает его в график.
+`TEST_RESONANCES_GRAPHS` — runs a resonance test and saves the results as a graph.
 
-На основании графика легче понять какие есть проблемы в кинематике, выбрать максимальные ускорения в слайсере, проверить насколько правильно автокалибратор поставил значения в `printer.cfg` 
+The graph makes it easier to understand kinematic issues, choose maximum accelerations in the slicer, and verify how accurately the auto-calibrator has set values in `printer.cfg`.
 
-После окончания теста в папке: `/Helper-Script/improved-shapers` будут находится наши графики. 
+After the test completes, the graphs will be in the folder: `/Helper-Script/improved-shapers`.
 
-В случае прошивки Simple AF графики будут в папке `/images`
-
-
-`PID_BED` это процедура калибровки, которая гарантирует, что принтер всегда будет поддерживать стабильную заданную температуру . PID (пропорционально-интегральная производная) используется в принтерах для поддержания стабильной температуры стола. По умолчанию тест идет на 70 градусах но рядом со значком есть стрелка вниз раскрываем и устанавливаем там температуру на которой мы в основном работаем.
+For SimpleAF firmware, the graphs will be in the `/images` folder.
 
 
-`PID_HOTEND` это процедура калибровки, которая гарантирует, что принтер всегда будет поддерживать стабильную заданную температуру . PID (пропорционально-интегральная производная) используется в принтерах для поддержания стабильной температуры в хотенде. По умолчанию тест идет на 250 градусах но рядом со значком есть стрелка вниз раскрываем и устанавливаем там температуру на которой мы в основном работаем.
-
-`TILT_TABLE` автоматическая регулировка наклона стола. 
+`PID_BED` — a calibration procedure that ensures the printer always maintains a stable target temperature. PID (Proportional-Integral-Derivative) is used in printers to maintain stable bed temperature. By default the test runs at 70°C, but next to the icon there is a dropdown arrow — expand it and set the temperature you normally print at.
 
 
-**ТОЛЬКО** для прошивки Simple Af Ender 5 Max
+`PID_HOTEND` — a calibration procedure that ensures the printer always maintains a stable target temperature. PID is used in printers to maintain stable hotend temperature. By default the test runs at 250°C, but next to the icon there is a dropdown arrow — expand it and set the temperature you normally print at.
 
-Алгоритм:
+`TILT_TABLE` — automatic bed tilt adjustment.
 
-1. домой по всем осям
-2. быстро вниз на 400 (это не до упора)
-3. "обман" высоты, как будто Z не 400, а 370 
-4. медленно вниз = долгожданный треск ****
-5. ещё раз "обман" (контрольный)
-6. ещё медленнее и ещё немного потрещим ***
-7. быстро вверх почти домой, но нет...
-8. дом Z (стандартно домой Z)
 
-Макрос копируем в любое место в printer.cfg
-Сохраняем с перезапуском клипера.
-Далее в разделе "макросы" видим новый пункт "tilt_table". 
-При желании в настройках макросов можно переименовать эту кнопку в привычный язык "наклон" и задать любой цвет (маркер) кнопки. 
-Если кого напрягает скорость стола, можете уменьшить или увеличить значение (F1300). 
+**ONLY** for Simple AF firmware on Ender 5 Max.
+
+Algorithm:
+
+1. Home all axes
+2. Rapidly move down to Z=400 (not all the way to the bottom)
+3. "Trick" the Z height — pretend Z is 370 instead of 400
+4. Slowly move down = the satisfying crunch ****
+5. Another "trick" (the final check)
+6. Even slower — a bit more crunching ***
+7. Rapidly move up — almost home, but not quite...
+8. Home Z (standard Z homing)
+
+Copy the macro to any location in printer.cfg.
+Save and restart Klipper.
+Then in the "Macros" section you will see the new "tilt_table" entry.
+If desired, you can rename this button to a more descriptive name in the macro settings and assign any color (marker) to the button.
+If the bed speed bothers you, you can decrease or increase the value (F1300).
 
 ```
 [gcode_macro tilt_table]
@@ -87,10 +87,9 @@ gcode:
 
 
 
-После этого ваша вебпанель приобретет более аккуратный вид и нужные вам макросы будут более наглядно расположены. 
+After this, your web panel will have a cleaner look and the macros you need will be displayed more clearly.
 
-Для прошивки Simple AF все вышесказанное также справедливо, однако чуть другие названия макросов.
-
+For Simple AF firmware, everything described above also applies, though the macro names are slightly different.
 
 
 
