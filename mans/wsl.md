@@ -1,69 +1,69 @@
-## Прошивка картографера с помощью Wsl из Windows
+## Flashing the Cartographer Using WSL on Windows
 
 
-### Установка wsl
+### Installing WSL
 
 
-Открываем командную строку windows пишем `cmd` в поиске правой кнопкой мыши на иконке и ищем строку **запуск с правами администратора**
+Open the Windows command prompt by typing `cmd` in search, right-click the icon, and select **Run as administrator**:
 
 ```
 wsl --install
 ```
-*Примечание:
-Приведенная выше команда работает только в том случае, если WSL не установлен вообще. Если вы запускаете `wsl --install` и видите текст справки WSL, попробуйте `wsl --list --online` просмотреть список доступных дистрибутивов и запустить `wsl --install -d <DistroName>` для установки дистрибутива.*
+*Note:
+The command above only works if WSL is not installed at all. If you run `wsl --install` and see WSL help text, try `wsl --list --online` to view available distributions and run `wsl --install -d <DistroName>` to install a distribution.*
 
-Подробно про  установку можно [почитать тут](https://learn.microsoft.com/ru-ru/windows/wsl/install) 
+You can read more about installation [here](https://learn.microsoft.com/en-us/windows/wsl/install) 
 
-**После установки обязательно перезагрузить компьютер!**
-иначе будет у вас ошибка вылезать.
+**After installation, you must restart your computer!**
+Otherwise you will get an error.
 
-### Устанавливаем ubuntu 
-вполне возможно что при установке wsl у вас и так установилась ubuntu. но чтобы быть уверенными поставим более правильный пакет.
+### Installing Ubuntu
+It is quite possible that Ubuntu was installed automatically when you installed WSL. However, to be sure, let's install the correct package:
 ```
 wsl.exe --install Ubuntu-24.04
 ```
 
 ![](/images/wsl_install.jpg)
 
-после установки вероятнее всего запустится автоматически и предложит ввести имя и потом пароль дважды. если не запустилось : 
+After installation it will most likely start automatically and ask you to enter a username and then a password twice. If it didn't start: 
 
 
-#### Запуск Ubuntu
+#### Starting Ubuntu
 ```
 wsl.exe -d Ubuntu-24.04
 ```
 
- вписываем имя пользователя и пароль, пароль отображаться не будет, это нормально, повторяем ввод пароля
+ Enter a username and password — the password will not be displayed while typing, this is normal. Repeat the password entry.
 
-будет правильным сразу проверить и установить обновления
+It is a good idea to immediately check for and install updates:
 
 ```
 sudo apt update && sudo apt upgrade -y
 ```
 
-выходим пока из установленного дистрибутива, так как нам надо еще доустановить пакет для usb подключения.  
+Exit the distribution for now, as we still need to install the USB connection package.
 
 ```
 exit
 ```
-### Увидеть USB в Linux 
+### Viewing USB Devices in Linux 
 
-Устанавливаем пакет для того чтобы видеть подключенные usb устройства 
+Install the package for detecting connected USB devices:
 
 ```
 winget install --interactive --exact dorssel.usbipd-win
 ```
 
-Список всех USB-устройств, подключенных к Windows, откройте PowerShell **в режиме администратора** и введите следующую команду. После перечисления устройств выберите и скопируйте идентификатор шины устройства, который вы хотите подключить к WSL.
+To list all USB devices connected to Windows, open PowerShell **as administrator** and run the following command. After listing the devices, find and copy the bus ID of the device you want to connect to WSL:
 ```
 usbipd list
 ```
 
 ![](/images/pid_list.jpg)
 
-**Обратите внимание на номер BUSID у себя, он может отличаться от того что в мануале**
+**Note your BUSID — it may differ from the one shown in this manual.**
 
-Перед присоединением USB-устройства необходимо использовать команду usbipd bind для совместного использования устройства, что позволяет подключить его к WSL. Для этого требуются права администратора. Выберите идентификатор шины устройства, который вы хотите использовать в WSL, и выполните следующую команду. После выполнения команды убедитесь, что устройство используется совместно, повторно выполнив команду `usbipd list`.
+Before attaching a USB device, you must use the `usbipd bind` command to share the device, which allows it to be connected to WSL. This requires administrator privileges. Select the bus ID of the device you want to use in WSL and run the following command. After running it, verify that the device is shared by running `usbipd list` again.
 
 
 ```
@@ -72,58 +72,58 @@ usbipd bind --busid 1-2
 
 ![](/images/bind_usb.jpg)
 
-1. Чтобы подключить USB-устройство, выполните следующую команду. (Вам больше не нужно использовать командную строку администратора с повышенными привилегиями.) Убедитесь, что командная строка WSL открыта, чтобы поддерживать работу  виртуальной машины WSL 
-2. Обратите внимание, что до тех пор, пока USB-устройство подключено к WSL, оно не может использоваться Windows. После подключения к WSL USB-устройство может использоваться любым дистрибутивом, работающим как WSL 
-3. Убедитесь, что устройство подключено с помощью `usbipd list`. В командной строке WSL выполните команду lsusb , чтобы убедиться, что USB-устройство отображается и может взаимодействовать с помощью средств Linux.
+1. To attach the USB device, run the following command. (You no longer need an elevated administrator command prompt.) Make sure the WSL command prompt is open to keep the WSL virtual machine running.
+2. Note that while the USB device is attached to WSL, it cannot be used by Windows. Once attached to WSL, the USB device can be used by any distribution running as WSL.
+3. Verify that the device is attached using `usbipd list`. In the WSL command prompt, run `lsusb` to confirm that the USB device appears and can interact using standard Linux tools.
 
-*Если например при выводе*:
+*For example, if the output shows:*
 
 ```
 BUSID  VID:PID    DEVICE
 1-2    1d50:614e  Cartographer
 ```
-то вписываем 1-2 в команде. **Внимание номер должен быть ваш а не из примера!**
+then enter 1-2 in the command. **Warning: use your own number, not the one from the example!**
 
 ```
 usbipd attach --wsl --busid 1-2 --auto-attach
 ```
 
-*не забываем заменить `<busid>` на свое значение*
+*Don't forget to replace `<busid>` with your own value.*
 
 ![](/images/usb_attach.jpg)
 
 
-Если появилась надпись красным. 
+If a red error message appears:
 
 ![](/images/error_usb.jpg)
 
-Не переживаем и в соседнем окне просто включаем наш линукс.
+Don't worry — in a separate window, simply start Linux:
 ```
 wsl.exe -d Ubuntu-24.04
 ```
-и повторяем попытку запуска в предыдущем окне
+Then retry the command in the previous window:
 
 ```
-usbipd attach --wsl --busid <ваш номер> --auto-attach
+usbipd attach --wsl --busid <your_busid> --auto-attach
 ```
 
-*не забываем заменить `<ваш номер>` на свое значение*
+*Don't forget to replace `<your_busid>` with your own value.*
 
-Важно! мы специально добавили `--auto-attach` он пригодится нам в дальнейшем при запуске скрипта.
+Important! We intentionally added `--auto-attach` — it will be useful later when running the flashing script.
 
 
-### Откройте Ubuntu 
+### Open Ubuntu 
 
 ```
 wsl.exe -d Ubuntu-24.04
 ```
 
-установим утилиты usb 
+Install USB utilities:
 
 ```
 sudo apt install usbutils
 ```
-затем проверим наконец что же у нас на портах usb
+Then finally check what is on the USB ports:
 
 ```
 lsusb
@@ -132,26 +132,26 @@ lsusb
 ![](/images/lsusb_.jpg)
 
 
-Вы увидите только что подключенное устройство и сможете взаимодействовать с ним с помощью обычных средств Linux. 
+You will see the device you just connected and will be able to interact with it using standard Linux tools.
 
-подробно можно [почитать тут](https://learn.microsoft.com/ru-ru/windows/wsl/connect-usb)
+You can read more details [here](https://learn.microsoft.com/en-us/windows/wsl/connect-usb)
 
 
-### Прошивка картографера
+### Flashing the Cartographer
 
-Вам необходимо выполнить следующие команды для установки необходимых пакетов.
+Run the following commands to install the required packages:
 
 ```
 sudo apt-get install virtualenv python3-dev python3-pip python3-setuptools libffi-dev build-essential git dfu-util
 ```
 
-ПО для картографера
+Cartographer software:
 
 ```
 git clone "https://github.com/Klipper3d/klipper" $HOME/klipper
 git clone "https://github.com/Cartographer3D/cartographer-klipper.git" $HOME/cartographer-klipper
 ```
-чтобы прошить прошивку 5.1.0, вам нужно скачать последнюю версию master и переключиться на нее. Это можно сделать следующим образом:
+To flash firmware 5.1.0, you need to download the latest master branch and switch to it:
 
 ```
 cd $HOME/cartographer-klipper
@@ -159,43 +159,43 @@ git fetch
 git switch master
 git reset --hard origin/master
 ```
-Настройка виртуального окружения Klipper
+Set up the Klipper virtual environment:
 
 ```
 virtualenv --system-site-packages $HOME/klippy-env
 $HOME/klippy-env/bin/pip3 install -r $HOME/klipper/scripts/klippy-requirements.txt
 ```
 
-**проверяем что все сделано правильно:**
+**Verify everything is done correctly:**
 
 ```
 lsusb
 ```
-должен появится вывод что то типа `1d50:614e` в списке id
+The output should contain something like `1d50:614e` in the ID list.
 
-### Прошивка 
+### Flashing 
 
 ```
-CARTO_DEV=$(ls /dev/serial/by-id/usb-* | grep -E "IDM|Cartographer" | head -1) && cd $HOME/klipper/scripts && sudo -E $HOME/klippy-env/bin/python -c "import flash_usb as u; u.enter_bootloader('$CARTO_DEV')" && echo "⏳ Ждём переподключение устройства..." && sleep 3 && for i in {1..20}; do KATAPULT_DEV=$(ls /dev/serial/by-id/usb-katapult* 2>/dev/null) && [ -n "$KATAPULT_DEV" ] && break; sleep 0.5; done && sudo -E $HOME/klippy-env/bin/python $HOME/klipper/lib/katapult/flashtool.py -f $HOME/cartographer-klipper/firmware/v2-v3/survey/5.1.0/Survey_Cartographer_K1_USB_8kib_offset.bin -d $KATAPULT_DEV
+CARTO_DEV=$(ls /dev/serial/by-id/usb-* | grep -E "IDM|Cartographer" | head -1) && cd $HOME/klipper/scripts && sudo -E $HOME/klippy-env/bin/python -c "import flash_usb as u; u.enter_bootloader('$CARTO_DEV')" && echo "⏳ Waiting for device to reconnect..." && sleep 3 && for i in {1..20}; do KATAPULT_DEV=$(ls /dev/serial/by-id/usb-katapult* 2>/dev/null) && [ -n "$KATAPULT_DEV" ] && break; sleep 0.5; done && sudo -E $HOME/klippy-env/bin/python $HOME/klipper/lib/katapult/flashtool.py -f $HOME/cartographer-klipper/firmware/v2-v3/survey/5.1.0/Survey_Cartographer_K1_USB_8kib_offset.bin -d $KATAPULT_DEV
 ```
 
-**Что в данной команде.**
+**What this command does:**
 
-Устройство работает как usb-Cartographer
+The device is running as usb-Cartographer
 
-Скрипт делает enter_bootloader
+The script calls enter_bootloader
 
-Устройство переподключается как usb-katapult
+The device reconnects as usb-katapult
 
-Windows автоматически делает attach в WSL
+Windows automatically attaches it in WSL
 
-Скрипт ловит новый /dev/serial/by-id
+The script detects the new /dev/serial/by-id
 
-Прошивка через Katapult
+Flashing via Katapult
 
 
 
-Вы должны увидеть примерно такой вывод:
+You should see output similar to this:
 
 ```
 Connecting to Serial Device /dev/serial/by-id/usb-katapult_stm32f042x6_2F003D001653584833373720-if00, baud 250000
@@ -223,5 +223,4 @@ Programming Complete
 
 ![](/images/complete.jpg)
 
-Подробнее можно [прочитать тут](https://pellcorp.github.io/creality-wiki/cartographer_flashing/) 
-
+You can read more [here](https://pellcorp.github.io/creality-wiki/cartographer_flashing/) 

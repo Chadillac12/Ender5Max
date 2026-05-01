@@ -1,26 +1,26 @@
-# Светлый путь
+# The Bright Path
 
-1. собираем принтер. проверяем комплектацию. Запускаем принтер проходим начальную калибровку.  если возникают ошибки не переживаем ищем ответы в чате.
-2. прошиваем принтер на [**прошивку в которой есть доступ root**](/firmware.md). Без этого принтер практически калека.
-3. Заказываем [картографер](/mans/simpleaf.md), [sfs 2.0](/mans/sfs2.md)  на алиэкспресс. Ждем зеленея от надежды. Ищем в мануалах файлы моделей необходимых для установки, не торопясь распечатываем. Возможно не спервого раза. 
-4. Пока ждем модели снимаем карту стола.  видим большой горб в 1-2мм на стол, не расстраиваемся идем в чат узнаем что нам надо купить мягкое железо, кусок стекла 415х415мм и еще одно магнитное основание.
-5. Регулируем ремни. Мануал будет позже. пока можно посмотреть видео на ютубе от креалити. модели упоров скачать [тут левый](/files/X-axis+tensioning+tool-20250220.stl) [тут правый](/files/Y-axis+tensioning+tool-20250220.stl)
-6. Получаем детали, устанавливаем, [датчик движения филамента sfs 2.0](/mans/sfs2.md).
-7. Прошиваем картографер [**так**](https://pellcorp.github.io/creality-wiki/cartographer_flashing/#flashing-k1-firmware-via-dfu-mode) или [**так**](/mans/dfu.md)
-8. Устанавливаем картографер на принтер. Модели для печати смотрим в пункте 9. Вспоминаем, что забыли купить стяжки чтобы прикрепить провод, плюемся, идем в ближайший магазин покупаем, крепим.
-9. Устанавливаем [**прошивку SimpleAF**](/mans/simpleaf.md) 
-10. Наши мучения окончены, забываем про софт креалити. Никакие обновления от них в будущем вам не нужны!
+1. Assemble the printer. Check the package contents. Start the printer and go through the initial calibration. If errors occur, don't panic — look for answers in the chat.
+2. Flash the printer with [**firmware that includes root access**](/firmware.md). Without this, the printer is practically crippled.
+3. Order a [Cartographer](/mans/simpleaf.md) and [SFS 2.0](/mans/sfs2.md) from AliExpress. Wait patiently. Browse the manuals to find the model files needed for installation and print them at your leisure. It may not come out perfect on the first try.
+4. While waiting for the parts, scan the bed mesh. You will see a large hump of 1–2 mm on the bed — don't be discouraged. Go to the chat and find out that you need to buy a soft steel sheet, a 415×415 mm glass plate, and an additional magnetic base.
+5. Adjust the belts. A manual will come later. For now, you can watch the Creality video on YouTube. Download the tensioner models here: [left](/files/X-axis+tensioning+tool-20250220.stl) [right](/files/Y-axis+tensioning+tool-20250220.stl)
+6. Receive the parts and install the [SFS 2.0 filament motion sensor](/mans/sfs2.md).
+7. Flash the Cartographer [**this way**](https://pellcorp.github.io/creality-wiki/cartographer_flashing/#flashing-k1-firmware-via-dfu-mode) or [**this way**](/mans/dfu.md)
+8. Install the Cartographer on the printer. For the required print models, see step 9. You will remember that you forgot to buy cable ties to secure the wire — sigh, head to the nearest store, buy them, and attach them.
+9. Install [**SimpleAF firmware**](/mans/simpleaf.md)
+10. Our troubles are over. Forget about Creality's software. You won't need any of their future updates!
 
-## Наши руки не для скуки.
+## Keep Your Hands Busy
 
-1. Если вам не хватило развлечений, то пишем в [**магазин на озон**](https://www.ozon.ru/seller/krealiti-3d-427462/?miniapp=seller_427462) и [**магазин в россии**](https://creality-3d.ru/catalog/Ender-5-Max) что хотим себе зашивку на принтер. Это даст возможность не только круто выглядеть но и печатать принтеру высокотемпературными пластиками такими как АБС. 
-2. Очень предусмотрительно с Вашей стороны будет заказать шестерни экструдера к1с. Да-да, фидер на принтере именно от него. так что смело заказываем. 
+1. If you haven't had enough fun yet, contact the [**Ozon store**](https://www.ozon.ru/seller/krealiti-3d-427462/?miniapp=seller_427462) and [**store in Russia**](https://creality-3d.ru/catalog/Ender-5-Max) and ask about getting an enclosure for your printer. This will not only look great but also allow you to print high-temperature filaments such as ABS.
+2. It would be very wise to order K1C extruder gears. Yes — the feeder on this printer is exactly the same. So order them without hesitation.
 
-3. Сопла для принтера - расходник. Так что заказываем тоже. Ссылка на магазин выше.
-4. Возможно вас заинтересует возможность [**смены хотенда на хотенд от К2**](/mans/k2_hotend.md).
-5. [**кастомные петли для передней дверцы зашивки**](/files/door190.zip), в отличии от штатных у которых 100 градусов открытие на 190  градусов
+3. Nozzles are consumables for the printer, so order those too. The store link is above.
+4. You might be interested in [**replacing the hotend with one from the K2**](/mans/k2_hotend.md).
+5. [**Custom hinges for the front enclosure door**](/files/door190.zip) — these open to 190 degrees, unlike the stock hinges which only open to 100 degrees.
 
 BOM
-Ось **М3х30**, под нее просто нарезать резьбу, крепление **М3х14**, в **вплавляемые гайки**.
+Axis **M3×30** — simply tap threads for it; fastener **M3×14** with **heat-set inserts**.
 
-Счастливого светлого пути в мир 3д печати!
+Happy travels into the world of 3D printing!

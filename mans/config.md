@@ -1,8 +1,8 @@
-<h2>Исправления конфигурации принтера для большей функциональности.</h2>
+<h2>Printer Configuration Fixes for Extended Functionality.</h2>
 
-открываем printer.cfg
+Open printer.cfg
 
- 1. найдем раздел  `[printer]`
+ 1. Find the `[printer]` section:
 
 ```
 [printer]
@@ -15,19 +15,19 @@ square_corner_velocity: 5.0
 max_z_accel: 300
 
 ```
-исправив его данным образом уйдем от неправильных значений максимальных ускорений изза которых при неправильных настройках слайсера мы можем повредить принтер.
+By correcting it as follows, we move away from incorrect maximum acceleration values which — with wrong slicer settings — could damage the printer.
 
- 2. после этого раздела добавим строку:
+ 2. After that section, add this line:
 
 ```
 [exclude_object]
 
 ```
-Это добавит функционал исключения объектов, крайне востребованная функция для принтеров с таким размером рабочего стола.
+This adds object exclusion functionality, which is an extremely useful feature for printers with a build plate this size.
 
- 3. в разделе `[adxl345]` строка `axes_map: x,-z,y` точно неправильная, но пока не выяснил как записать правильно. 
+ 3. In the `[adxl345]` section, the line `axes_map: x,-z,y` is definitely incorrect, but the correct value has not yet been confirmed.
 
- 4. Лампочка состояния принтер, по отзывам, горит слишком ярко. Исправим это: ищем следующие разделы и меняем как написано тут. также исправляем логику подсветки стола которая была инвертирована.
+ 4. The printer status LED is reportedly too bright. Let's fix that: find the following sections and change them as described here. We also fix the bed lighting logic which was inverted.
 
  ```
 [output_pin green_pin]
@@ -52,7 +52,7 @@ pwm: True
 cycle_time: 0.010
 value: 1.0
  ```
- 5. Чтобы алгоритмы отрабатывали правильно нам необзодимо также исправить файл `gcode_macro.cfg` заходим туда и находим следующие разделы и меняем их на представленные ниже
+ 5. For the algorithms to work correctly, we also need to fix the `gcode_macro.cfg` file. Open it and find the following sections and replace them with the ones shown below:
 
 ```
 ###YINZHI
@@ -88,19 +88,19 @@ gcode:
 gcode:
   SET_PIN PIN=light_pin VALUE=0
 ```
-красный я оставил без изменений чтобы чтобы при ошибке привлечь ваше внимание. однако вы можете поменять яркость и на нем. 
+I left the red LED unchanged so that it draws attention when an error occurs. However, you can also adjust its brightness.
 
- 6. Решив сделать принтер чуть тише я изменил логику работы кулера материнской платы, теперь он срабатывает при включении мотора икса. 
+ 6. To make the printer a bit quieter, I changed the logic of the motherboard fan — it now activates when the X-axis motor is enabled.
 ```
 #############FAN OLD CONFIG
-#[output_pin MainBoardFan] # закоментируйте этот раздел
+#[output_pin MainBoardFan] # comment out this section
 #pin: !PB1
 
-[controller_fan MCU_fan] # включаем обдув после включения драйверов
+[controller_fan MCU_fan] # enable fan when stepper drivers are active
 pin: PB1
 max_power: 1.0
 fan_speed: 1
 kick_start_time: 0
 stepper: stepper_x
 ```
-в данном примере вы видите что вам надо закоментировать и что добавить.
+In this example you can see what to comment out and what to add.

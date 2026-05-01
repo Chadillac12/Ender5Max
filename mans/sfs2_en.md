@@ -66,7 +66,7 @@ gcode:
 
 [filament_motion_sensor encoder_sensor]
 switch_pin: ^!PC6
-detection_length: 5.3 # возможно сделать чуть меньше 2.7 по умолчанию
+detection_length: 5.3 # can possibly be reduced slightly — 2.7 is the default
 extruder: extruder
 runout_gcode:
   RESPOND TYPE=command MSG="Filament runout/blocked!"

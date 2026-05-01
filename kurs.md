@@ -1,30 +1,30 @@
-<h3 align="right"><a href="https://www.tinkoff.ru/rm/yakovleva.irina203/51ZSr71845" target="_blank">ваше "спасибо" автору</a></h3>
-<h3 align="right"><a href="https://t.me/tombraider2006" target="_blank">телеграм канал автора</a></h3>
+<h3 align="right"><a href="https://www.tinkoff.ru/rm/yakovleva.irina203/51ZSr71845" target="_blank">your "thank you" to the author</a></h3>
+<h3 align="right"><a href="https://t.me/tombraider2006" target="_blank">author's Telegram channel</a></h3>
 
-## О КУРСЕ
-Этот курс – необходимый компаньон для тех, кто только начинает свой путь в мире 3D-печати. Чтобы не утонуть в океане информации требуется наставник, способный ориентировать вас в огромном объеме материалов.
+## ABOUT THE COURSE
+This course is an essential companion for those who are just starting out in the world of 3D printing. To avoid drowning in an ocean of information, you need a guide who can orient you through the vast amount of material available.
 
-Именно здесь я приду к вам на помощь, предлагая не только основы, но и ключевые ссылки на актуальные и релевантные источники.
+That is exactly what I am here for — offering not only the fundamentals but also key links to up-to-date and relevant sources.
 
-Мой курс разработан так, чтобы помочь вам быстро освоить все тонкости работы с 3D-принтерами, предоставив полезные сведения и сократив путь к вашему профессиональному росту.  
+My course is designed to help you quickly master all the nuances of working with 3D printers, providing practical knowledge and shortening your path to professional growth.  
 
-настроим слайсер, на принтер поставим модифицированную прошивку со всеми новыми наворотами. 
+We will configure the slicer and install a modified firmware on the printer with all the latest features.
 
- 1. Установка модификаций ПО. 2 варианта: SimpleAF\Helper Script
- 2. Тонкая настройка конфигурационных файлов принтера
- 3. Пояснение принципов работы и каждого изменения от стокового ПО
- 4. Обьяснение нюансов интерфейса веб панели и его практического применения
- 5. Советы по регулярному обслуживанию принтера.
- 6. Cоветы по исправлению наклона стола.
- 7. Интерфейс слайсера и настройка под принтер.
- 8. Объяснения настроек параметров пластика.
- 9. Порядок тестов настройки параметров пластиков и нюансы проведения тестов.
- 10. Пробная печать, пояснения особенностей алгоритмов работы. на том пластике который у вас есть(pla, petg, ABC)
- 11. Ответы на вопросы по печати.
+ 1. Installing software modifications. 2 options: SimpleAF / Helper Script
+ 2. Fine-tuning the printer's configuration files
+ 3. Explanation of the principles and each change from the stock software
+ 4. Overview of the web panel interface and its practical use
+ 5. Tips for regular printer maintenance.
+ 6. Tips for correcting bed tilt.
+ 7. Slicer interface and printer-specific settings.
+ 8. Explanation of filament parameter settings.
+ 9. Order of filament calibration tests and testing nuances.
+ 10. Trial print with explanations of algorithm behavior — using whatever filament you have (PLA, PETG, ABS)
+ 11. Answers to printing questions.
 
- в общем  провожу вас за ручку в мир качественной быстрой печати. 
-записаться можно тут(пишите ник в телеграмме и вариант прошивки SimpleAF\Helper Script ) https://easyweek.ru/tom-tomich
+ In short, I will walk you through the world of fast, high-quality printing.
+ Sign up here (send your Telegram username and firmware option SimpleAF / Helper Script): https://easyweek.ru/tom-tomich
 
 https://youtu.be/q9dPGSkCr6M?si=31thqjn6EUDBIXiD
 
-Отзыв на обучение.
+Course review.

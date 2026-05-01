@@ -1,157 +1,156 @@
-# Активная термокамера для Ender 5 Max
+# Active Heated Chamber for Ender 5 Max
 
-После установки штатной зашивки возникает желание попечатать пластики с высокой усадкой(ABS, PA и прочие)
+After installing the stock enclosure, the desire to print high-shrinkage filaments (ABS, PA, etc.) naturally arises.
 
-Второй момент это печать обычных пластиков, большую крышку снимать и укладывать достаточно проблематично особенно при дефиците места.
+The second issue is printing with standard filaments — removing and replacing the large lid is quite inconvenient, especially in tight spaces.
 
-Все эти проблемы мы постараемся решить с помощью создания дополнительного оборудования. 
+We will try to solve both of these problems by building additional equipment.
 
-1. Нагреватель камеры. призван ускорить и стабилизировать температуру внутри принтера
+1. Chamber heater — designed to speed up and stabilize the temperature inside the printer.
 
-2. Дополнительные вентиляторы обдува должны обеспечить отток горячего воздуха, если это необходимо. Особенно это важно при печати легкоплавкими пластиками типа PLA, PETG и подобных
+2. Additional exhaust fans — to provide airflow of hot air when needed. This is especially important when printing low-temperature filaments such as PLA, PETG, and similar.
 
-Так как материнская плата принтера бедна на разьемы и пины, необходимо добавить дополнительную плату mcu которая обеспечит весь этот праздник жизни.
+Since the printer's motherboard has limited connectors and pins, we need to add an additional MCU board to handle all of this.
 
-## Материалы и инструменты.
+## Materials and Tools
 
-1. Дополннительная плата mcu - [expander mcu Voron](https://aliexpress.ru/item/1005002394568889.html)
-2. [Gdstime GDB 12032 Пластиковый вентилятор 12см 24В](https://aliexpress.ru/item/1005002311794444.html)
-3. [Вентилятор охлаждения, кулер DC12025HBL 24V, 120на120на25мм, подшипник качения **2 штуки**](https://www.ozon.ru/product/ventilyator-ohlazhdeniya-kuler-dc12025hbl-24v-120-120-25mm-podshipnik-kacheniya-1990050205/)
-4. [Автоматический выключатель 10А SSR-10DA](https://www.ozon.ru/product/avtomaticheskiy-vyklyuchatel-10a-1661490786/)
-5. [PTC Нагреватель Керамический Постоянной Температуры Высокого Напряжения 220 В 400 Вт](https://www.ozon.ru/product/ptc-nagrevatel-keramicheskiy-postoyannoy-temperatury-vysokogo-napryazheniya-220-v-400-vt-2164837347)
-6. [Термистор 100k 3950. можно 2 шт](https://aliexpress.ru/item/1005006645736045.html)
-7. Вентилятор 4010 5V
-8. [вплавляемые гайки 100PCS, M3xL4xOD4.5](https://aliexpress.ru/item/1005006079067094.html)
-9. винты м4х40(8шт) с гайкой(8 шт)
-10. [Провода 24AWG](https://aliexpress.ru/item/1005004336218242.html)
-11. Прямые руки(опционально)
-12. Много желания(обязательно)
+1. Additional MCU board — [expander MCU Voron](https://aliexpress.ru/item/1005002394568889.html)
+2. [Gdstime GDB 12032 Plastic Fan 12cm 24V](https://aliexpress.ru/item/1005002311794444.html)
+3. [Cooling fan DC12025HBL 24V, 120x120x25mm, ball bearing — **2 pieces**](https://www.ozon.ru/product/ventilyator-ohlazhdeniya-kuler-dc12025hbl-24v-120-120-25mm-podshipnik-kacheniya-1990050205/)
+4. [10A SSR-10DA solid-state relay](https://www.ozon.ru/product/avtomaticheskiy-vyklyuchatel-10a-1661490786/)
+5. [PTC Ceramic Constant Temperature High Voltage Heater 220V 400W](https://www.ozon.ru/product/ptc-nagrevatel-keramicheskiy-postoyannoy-temperatury-vysokogo-napryazheniya-220-v-400-vt-2164837347)
+6. [Thermistor 100k 3950 — 2 pieces](https://aliexpress.ru/item/1005006645736045.html)
+7. 4010 fan 5V
+8. [Heat-set inserts 100PCS, M3xL4xOD4.5](https://aliexpress.ru/item/1005006079067094.html)
+9. M4×40 screws (8 pcs) with nuts (8 pcs)
+10. [24AWG wire](https://aliexpress.ru/item/1005004336218242.html)
+11. Steady hands (optional)
+12. Lots of motivation (required)
 
-## Модели для печати.
+## Print Models
 
-1. [Упоры для колпака. Используются при профилактических работах при необходимости работы с заправкой филамента.](/files/cap_stop_v2.stl)
-2. [Корпус нагревателя камеры](/files/chamber_heater_v16.stl) разделить на модели в слайсере и расставить перед печатью.
-3. [Панели задней крышки для установки кулеров распечатать 2 шт](/files/back_kolpak_half.stl)
-4. [Жалюзи кулеров](https://www.printables.com/model/9054-gravity-vent-for-enclosure-for-120mm-fan)
-5. Разьем магнитного соединения контактов крышки
-6. [Задняя крышка корпуса головы экструдера](/files/backcover.stl)
-7. [Чертеж для сверления отверстий в задней панели](/files/holes_v16_mirror.pdf)
+1. [Cap stops — used during maintenance when working with filament loading.](/files/cap_stop_v2.stl)
+2. [Chamber heater housing](/files/chamber_heater_v16.stl) — split into separate models in the slicer and arrange before printing.
+3. [Back lid panels for mounting fans — print 2 pieces](/files/back_kolpak_half.stl)
+4. [Fan shutters/louvres](https://www.printables.com/model/9054-gravity-vent-for-enclosure-for-120mm-fan)
+5. Magnetic connector for the lid contact connection
+6. [Rear cover of the extruder head body](/files/backcover.stl)
+7. [Drilling template for the rear panel](/files/holes_v16_mirror.pdf)
 
-## Сборка
+## Assembly
 
-Я попробовал распечатать черным абс и понял что на фото сборки будет черное на черном. Поэтому для мануала специально распечатал из светлого абс чтобы было виднее там где это возможно. 
+I tried printing in black ABS and realized that photos of the assembly would show black on black. So for the manual I deliberately printed in light ABS where possible to make things more visible.
 
-### корпус нагревателя
+### Heater housing
 
 ![](/images/first_view.jpg)
 
-1. Используя вплавляемые втулки собираем корпус.
+1. Using heat-set inserts, assemble the housing.
 
 ![](/images/nuts_insert.jpg)
 
-не забываем про обратную сторону
+Don't forget the back side:
 
 ![](/images/nuts_insert2.jpg)
 
 
 
-1.2. Коммутируем нагреватель и реле. По фото легко понять как.
+1.2. Wire the heater and relay. The photo makes it easy to understand.
 
 ![](/images/heater_assemble1.jpg)
 
-2. Коммутация предполагает 2 варианта с биметаллическим датчиком автоотключения или с монтажом термистора подключаемого к плате доп MCU.
+2. The wiring supports 2 options: with a bimetallic auto-shutoff sensor, or with a thermistor connected to the additional MCU board.
 
 ![](/images/heater_assemble2.jpg)
 
-2.1. Прикручиваем улитку кулера. для красоты немного по другому протаскиваем провод 
+2.1. Attach the blower fan. Route the wire slightly differently for a cleaner look.
 
 ![](/images/heater_assemble3.jpg)
 
 
-Подключаем остальные провода
+Connect the remaining wires:
 
 ![](/images/heater_assemble4.jpg)
 
-Подключение проводов к блоку питания принтера на фото
+Wiring connections to the printer power supply shown in the photo:
 
 ![](/images/BP.png)
 
-Сверяемся или записываем куда подключаем. Картинка с пинами нам в помощь:
+Cross-reference or note down where each wire goes. The pinout diagram will help:
 
 ![](/images/pinout_expander.png)
 
-**Power Input** - наше питание 24 Вольта от блока питания.
+**Power Input** — our 24V power supply input.
 
-**PA0** - Провод на реле нагревателя
+**PA0** — Wire to the heater relay.
 
-**PA1** - Провод на улитку кулера нагревателя
+**PA1** — Wire to the heater blower fan.
 
-**PA3** - Проводка на кулеры охлаждения установливаемые в крышку принтера
+**PA3** — Wiring to the cooling fans installed in the lid.
 
-**PA5** - Термистор нагревателя. необязательный но желательный. если у вас нагреватель с биметалическим датчиком, то вам не нужен.
+**PA5** — Heater thermistor. Optional but recommended. If your heater has a bimetallic sensor, you don't need this.
 
-**PA6** - термистор камеры принтера. основной.
+**PA6** — Chamber thermistor — the main one.
 
-3. Для крепления к задней стенке используем [**шаблон**](/files/holes_v16_mirror.pdf) для сверления задней стенки корпуса 
+3. To mount to the rear wall, use the [**template**](/files/holes_v16_mirror.pdf) for drilling the rear panel.
 
-Распечатаем и наносим на край малярный скотч как показано на фото.
+Print it and apply masking tape to the edge as shown in the photo.
 
 ![](/images/blueprint1.jpg)
 
-Аккуратно располагаем на задней стенке в упор к левому нижнему краю и сверлим по намеченным отверстиям. Вы же вплавили с обратной стороны гайки?
+Carefully place it on the rear wall flush with the lower left corner and drill through the marked holes. You did insert the heat-set inserts from the back, right?
 
 ![](/images/blueprint2.jpg)
 
-Я сверлил сверлом диаметром 4.5мм чтобы был припуск на неправильную печать или кривые руки. Мне повезло - все совпало.
+I drilled with a 4.5mm bit to allow some tolerance for imperfect printing or imprecise drilling. I got lucky — everything lined up.
 
 ![](/images/holes_inside.png)
 
-прикручиваем корпус нагревателя.
+Attach the heater housing.
 
 
 
-4. Для удобства монтажа и коммутации крышку на доп мсу не торопитесь прикручивать, это можно сделать уже после того как убедитесь что всё работает.
-5. Провод USB-Mini-Usb(не торопитесь покупать пока не приехала плата, есть отзывы что может быть как **Type-C** так и **Mini-USB**) длиной минимум 1.5м лучше 1.8м необходимо провести от 
-экрана через отвестие для проводов потом внутри правой стойки принтера, и далее внутри правой нижнего профиля до задней стенки.
-6. Термистор камеры я закрепил на двусторонний скотч над нагревателем. 
+4. For easier wiring, don't rush to screw on the additional MCU cover — you can do that after confirming everything works.
+5. The USB Mini-USB cable (don't rush to buy it before the board arrives — it may come as either **Type-C** or **Mini-USB**) at least 1.5m, preferably 1.8m, should be routed from the screen through the cable opening, then inside the right upright of the printer, and along the bottom right profile to the rear wall.
+6. I attached the chamber thermistor with double-sided tape above the heater.
 
 ![](/images/termistor_glue.jpg)
 
-Второй термистор у меня прикасается к самому нагревателю и служит исключительно для моего спокойствия и справочных сведений, однако в конфиге указано что если он вдруг нагреется выше 140 градусов принтер отключится.
+The second thermistor is in contact with the heater itself and serves purely for my peace of mind and reference — but the config specifies that if it heats above 140°C, the printer will shut down.
 
 
 
 
-### установка задней панели на колпак
-1. Снимаем заднюю панель с родного колпака и прикручиваем распечатанные модели с отверстиями под кулеры.
-2. на кулерах есть стрелка куда они будут дуть, поглядывая на нее скручиваем винтами м4х40 с гайкой(8 шт) корпус кулер и корпус жалюзи.
-3. используя винты которые являлись транспортировочными для боковых стоек оси зет(вы же их не выкинули, да?) заменяем ими боковые нижние винты и прикручиваем боковые упоры. Нужны 2 гайки м4.
+### Installing the Rear Panel on the Lid
+1. Remove the rear panel from the original lid and screw on the printed models with fan cutouts.
+2. The fans have an arrow showing airflow direction — referencing it, assemble the fan body and louver housing with M4×40 screws and nuts (8 pieces).
+3. Using the screws that were transport fasteners for the Z-axis side uprights (you didn't throw them away, right?), replace the lower side screws with them and attach the side stops. You need 2 M4 nuts.
 
-4. коммутируем проводку с магнитным разьемом. (модель держателя в разработке) и соединяем с платой внутри корпуса нагревателя. 
-
-
-### Замена задней крышки печатающей головы
-
-При нагреве воздуха внутри камеры принтера начинает хуже охлаждаться плата управления находящаяся внутри нашей головы. Чтобы исправить это нам придется установить дополнительный кулер. коммутируется он в паралель кулеру охлаждения радиатора хотенда(временно, изыскивается возможность подключить к задней плате.) Корпус желательно распечатать из высокотемпературного пластика, подойдут:
-1. PA-СF или PA-GF 
-2. ABS-CF ABS-GF
-3. на крайний случай ABS или HIPS
-
-*Вообще расположение чипа Mcu_nozle вне моего понимания логики. Мало того, что сзади, так еще и развернут лицом к корпусу мотора, ни радиатор поставить ни обдуть нормально.*
+4. Wire the magnetic connector (holder model in development) and connect it to the board inside the heater housing.
 
 
+### Replacing the Toolhead Rear Cover
 
-### Настройка
+When the air inside the printer chamber heats up, the control board inside the print head starts to cool less effectively. To fix this we need to install an additional fan, wired in parallel with the hotend heatsink cooling fan (temporary — a connection to the rear board is being explored). The housing should ideally be printed in high-temperature filament; suitable options are:
+1. PA-CF or PA-GF
+2. ABS-CF or ABS-GF
+3. As a last resort, ABS or HIPS
 
-1. Скачиваем файл [heater.cfg](/files/heater.cfg) и помещаем в папку конфигов принтера.
+*Honestly, the placement of the Mcu_nozzle chip is beyond me logically. Not only is it mounted at the back, it also faces the motor body — making it impossible to add a heatsink or cool it properly.*
 
-2. Открываем файл printer.cfg и вписываем в произвольном месте с новой строки
+
+
+### Configuration
+
+1. Download the [heater.cfg](/files/heater.cfg) file and place it in the printer config folder.
+
+2. Open printer.cfg and add the following line on a new line anywhere in the file:
 
 `[include heater.cfg]`
 
-3. Также для правки меню экрана нам надо добавить несколько строк в файл `/usr/data/guppyscreen/guppyscreen.json`
+3. To also update the screen menu, add a few lines to `/usr/data/guppyscreen/guppyscreen.json`.
 
-    * Хорошим правилом на будущее будет скачать оригинальный файл на всякий случай. можно создать бекап командой
+    * As a good practice, download the original file as a backup first:
 
     ```
     cp /usr/data/guppyscreen/guppyscreen.json /usr/data/guppyscreen/guppyscreen.json.backup
@@ -172,7 +171,7 @@
 ```
 
 
-и ищем следующие строки по картинке и вставляем аналогично первому примеру.
+Then find the following lines as shown in the picture and insert similarly to the first example:
 
 ![](/images/guppy2.png)
 

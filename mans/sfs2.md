@@ -1,44 +1,44 @@
-<h3 align="right"><a href="https://www.tinkoff.ru/rm/yakovleva.irina203/51ZSr71845" target="_blank">ваше "спасибо" автору</a></h3>
-<h3 align="right"><a href="https://t.me/tombraider2006" target="_blank">телеграм канал автора</a></h3>
-<h5 align="right">поставьте "звездочку" проекту. так другим пользователям легче его найти.</h5>
+<h3 align="right"><a href="https://www.tinkoff.ru/rm/yakovleva.irina203/51ZSr71845" target="_blank">your "thank you" to the author</a></h3>
+<h3 align="right"><a href="https://t.me/tombraider2006" target="_blank">author's Telegram channel</a></h3>
+<h5 align="right">give the project a "star" so other users can find it more easily.</h5>
 
 
-## Установка датчика движения филамента вместо стандартного датчика окончания филамента
+## Installing the Filament Motion Sensor Instead of the Standard Filament Runout Sensor
 
 [**english version**](/mans/sfs2_en.md)
 
 ![](/images/sfs_1.png)
 
-Учитывая большую область печати на этом принтере, значительное время печати и высокий расход филамента, контроля только за его окончанием явно недостаточно. Цена ошибки в случае застревания материала будет крайне высока, поэтому установка системы мониторинга не только окончания, но и застревания филамента — отличное решение.
+Given the large print area of this printer, significant print times, and high filament consumption, monitoring only for filament runout is clearly not sufficient. The cost of a filament jam failure would be extremely high, so installing a system that monitors both runout and jams is an excellent solution.
 
-Это позволит минимизировать риски сбоев и избежать потерь времени и материалов.
+This will minimize the risk of failures and prevent losses of time and materials.
 
-Так как в обычном датчике филамента у нас три провода, а в sfs 2.0 их 4 то есть два способа установки. 
-* первый предполагает соединение только датчика движения вместо окончания филамента, что логично. если нет филамента то он и не движется, что все равно приведет к сработке.
-* однако в конструкции нашего принтера не так уж и сложно подвести дополнительный провод, так что этот вариант мы тоже рассмотрим. 
+Since a standard filament sensor uses 3 wires while the SFS 2.0 uses 4, there are two installation methods:
+* The first involves connecting only the motion sensor in place of the runout sensor, which is logical — if there is no filament, it won't move either, which will still trigger the sensor.
+* However, routing an additional wire in our printer is not very difficult, so we will also cover that option.
 
-## Первый способ
+## Method 1
 
-(замена датчика без дополнительной проводки)
+(replacing the sensor without additional wiring)
 
-Для этого нам нужно переставить провода в колодку на 4 провода. например так:
+For this, we need to rearrange the wires into a 4-pin connector, for example like this:
 
 ![](/images/sfs2_connector.jpg)
 
-значения на коннекторе следующие:
+Connector pin assignments:
 
 ![](/images/sfs_pin.png)
 
 
-Далее заходим в `printer.cfg` и ищем строки:
+Open `printer.cfg` and find the lines:
 
 ```
-[filament_switch_sensor filament_sensor] # датчик филамента
+[filament_switch_sensor filament_sensor] # filament sensor
 switch_pin: !PC6
 pause_on_runout: true
 ```
 
-и заменяем на:
+And replace them with:
 
 ```
 [filament_motion_sensor filament_sensor]
@@ -53,7 +53,7 @@ insert_gcode:
 
 ```
 
-**или** можем побаловаться с оповещением и при паузе прозвучит несколько звуковых сигналов
+**Or** add audio alerts — several beeps will sound when paused:
 
 ```
 [gcode_shell_command beep]
@@ -68,7 +68,7 @@ gcode:
 
 [filament_motion_sensor encoder_sensor]
 switch_pin: ^!PC6
-detection_length: 5.3 # возможно сделать чуть меньше 2.7 по умолчанию
+detection_length: 5.3 # can possibly be reduced slightly — 2.7 is the default
 extruder: extruder
 runout_gcode:
   RESPOND TYPE=command MSG="Filament runout/blocked!"
@@ -87,32 +87,32 @@ gcode:
   beep
   beep
   beep
-  #UPDATE_DELAYED_GCODE ID=sfs_alarm DURATION=1 #если убать комент в начале строки то сигналы будут постоянно.
+  #UPDATE_DELAYED_GCODE ID=sfs_alarm DURATION=1 # uncomment this line for continuous alerts
 ```
-## Второй способ
+## Method 2
 
-Если ваши руки не для скуки то можно получить полную функциональность датчика с меньшим количеством отказов для этого надо задействовать все 4 провода от датчика. 
+If you want full sensor functionality with fewer false positives, you can use all 4 sensor wires. You will need to route an additional wire.
 
-*По сути внутри корпуса sfs находится 2 датчика, датчики наличия филамента, и датчик движения филамента. Для этого нам и нужен четвертый провод.*
+*In effect, the SFS housing contains 2 sensors: a filament presence sensor and a filament motion sensor. That is why we need the fourth wire.*
 
 
-Для начала, я соеденил конектор из комплекта через переходник(*дендрофекальным способом*)
+First, I connected the included connector via an adapter *(in a roundabout way)*:
 
 ![](/images/sfs_connector.png)
 
-Оставшийся **синий** провод надо протянуть до нашей материнской платы и и припаять к этому выходу. На фото он красный потому что родного провода не хватает буквально 10 сантиметров и я его нарастил. 
+The remaining **blue** wire needs to be routed to the motherboard and soldered to this pin. In the photo it appears red because the original wire was about 10 cm too short and had to be extended.
 
 ![](/images/sfs_soldering.png)
 
-заходим в `printer.cfg` и ищем строки:
+Open `printer.cfg` and find the lines:
 
 ```
-[filament_switch_sensor filament_sensor] # датчик филамента
+[filament_switch_sensor filament_sensor] # filament sensor
 switch_pin: !PC6
 pause_on_runout: true
 ```
 
-и заменяем на:
+And replace them with:
 
 
 ```
@@ -155,10 +155,10 @@ gcode:
   beep
   beep
 ```
-### Установка
+### Installation
 
-Для установки необходимо заменить платформу датчика филамента. модель скачиваем [**отсюда**](/files/Ender5MaxSFSMount.stl) 
+To install, you need to replace the filament sensor platform. Download the model [**from here**](/files/Ender5MaxSFSMount.stl)
 
-Выглядит это так
+It looks like this:
 
 ![](/images/sfs_mounted.png)

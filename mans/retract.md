@@ -1,20 +1,20 @@
-<h3 align="right"><a href="https://www.tinkoff.ru/rm/yakovleva.irina203/51ZSr71845" target="_blank">ваше "спасибо" автору</a></h3>
-<h3 align="right"><a href="https://t.me/tombraider2006" target="_blank">телеграм канал автора</a></h3>
-<h5 align="right">поставьте "звездочку" проекту. так другим пользователям легче его найти.</h5>
+<h3 align="right"><a href="https://www.tinkoff.ru/rm/yakovleva.irina203/51ZSr71845" target="_blank">your "thank you" to the author</a></h3>
+<h3 align="right"><a href="https://t.me/tombraider2006" target="_blank">author's Telegram channel</a></h3>
+<h5 align="right">give the project a "star" so other users can find it more easily.</h5>
 
-<h2> управляем ретрактом во время печати.</h2>
+<h2> Controlling Retraction During Printing</h2>
 
-в прошивке клиппер возможно управлять ретрактом во время печати. это нужно если вы внезапно увидели, что ваш пластик отсырел и начал тянуть сопли,  а у вас уже прошло "n" часов печати и так лень все начинать заново. но для этого нужно немного подготовительной работы. 
+In Klipper firmware it is possible to control retraction while printing. This is useful if you suddenly notice that your filament has absorbed moisture and is stringing, but you have already printed "N" hours and really don't want to start over. A little preparation work is required for this.
 
-первое. в орке заходим в настройки принтера и ставим галки "использовать откат из прошивки" 
+First, in OrcaSlicer go to the printer settings and enable "Use firmware retraction":
 
 ![](/images/firm_retract.png)
 
-убираем галочку очистка сопла при откате во вкладке экструдер
+Disable the "Wipe while retracting" option in the Extruder tab:
 
 ![](/images/clear_nozle_orca.png)
 
-далее в стартовом коде принтера добавляем блок:
+Then add the following block to the printer start G-code:
 
 ```
 SET_RETRACTION RETRACT_LENGTH=[retraction_length] RETRACT_SPEED=[retraction_speed] UNRETRACT_EXTRA_LENGTH=[retract_restart_extra] UNRETRACT_SPEED=[deretraction_speed]
@@ -24,38 +24,36 @@ RESPOND TYPE=command MSG="Retract speed set to [retraction_speed]/[deretraction_
 
 ![](/images/start_code.png)
 
-не забывайте вписывать значение отката для своего пластика когда настраиваете.
+Don't forget to enter the retraction value for each filament when you configure it.
 
-например так:
+For example like this:
 
 ![](/images/orca3.jpg)
 
-далее переходим в принтер и открываем файл printer.cfg
-
-вписываем такой раздел:
+Then open the printer config file printer.cfg and add this section:
 
 ```
 [firmware_retraction]
-retract_length: 0.43 # безопасное значение для того пластика которым чаще всего печатаете.
+retract_length: 0.43 # safe value for the filament you print with most often
 retract_speed: 30
 unretract_extra_length: 0
 unretract_speed: 30
 
 ```
-после перезагрузки если вы не увидели нового раздела в правом верхнем углу тыкаем в три точки и ищем следующий раздел:
+After restarting, if you don't see a new section in the upper right corner, click the three dots and look for the following section:
 
 ![](/images/fluid1.jpg)
 
-внутри находим раздел "настройки отката" и ставим галочку
+Inside, find the "Retraction settings" section and enable the checkbox:
 
 ![](/images/fluid2.jpg)
 
-В результате у нас появится новый раздел в веб панели с помощью которого вы можете прямо во время печати управлять вашим ретрактом. 
+As a result, a new section will appear in the web panel that allows you to control your retraction during printing.
 
 ![](/images/fluid3.jpg)
 
-проверить все ли у вас правильно перед печатью можно нарезав модель и сохранив ее на диск, далее открываем файл с помошью текстового редактора и ищем `Move Z Axis up` 
+To verify everything is correct before printing, slice your model, save it to disk, then open the file with a text editor and search for `Move Z Axis up`:
 
 ![](/images/test1.jpg)
 
-убеждаемся что у нас есть команда **set_retraction** и то что там у нас цифры, а так же что дальше у нас есть команда **G10**  которая означает что послана команда на ретракт который будет обработан прошивкой. 
+Confirm that you have the **set_retraction** command with actual numbers, and that further down you have the **G10** command, which means the retract command was sent and will be processed by the firmware.
