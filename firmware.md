@@ -4,7 +4,7 @@
 <h2>Прошивки</h2>
 
 
-На данный момент получить  `root` можно с помощью прошивки [1.2.0.21](https://www.crealitycloud.com/downloads/firmware/ender-series/ender-5-max) с паролем `creality_2024`
+На данный момент получить  `root` можно с помощью прошивки [1.2.0.24](https://www.crealitycloud.com/downloads/firmware/ender-series/ender-5-max) с паролем `creality_2024`
 
 ![](/images/root1.jpg)
 
